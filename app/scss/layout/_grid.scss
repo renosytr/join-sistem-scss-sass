@@ -1,0 +1,81 @@
+@use '../util' as u;
+
+%widget{
+    padding: u.rem(16);
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto auto;
+    gap: u.rem(20);
+    width: min(100% - u.rem(40), u.rem(1000));
+    margin-inline: auto;
+
+    @include u.breakpoint(large){
+        grid-template-columns: 2fr 1fr;
+        grid-auto-rows: auto;
+        padding: 0;
+        width: min(100%, u.rem(1000));
+    }
+
+    &__main, &__sidebar{
+        padding: u.rem(40);
+    }
+
+    &__main{
+        background-color: rgb(19, 19, 81);
+    }
+
+    &__sidebar{
+                @include u.breakpoint-down(medium){
+            text-align: center;
+        }
+    }
+
+    &__widget {
+        padding: u.rem(16);
+
+        &.green {
+            background-color: rgb(69, 119, 42);
+        }
+
+        &.yellow {
+            background-color: rgb(172, 187, 44);
+        }
+    }
+
+    // WAYS TO EXTEND ATTRIBUTE IN SCSS
+    &__widget {
+        &--green {
+            @extend %widget;
+            background-color: rgb(69, 119, 42);
+        }
+
+        &--yellow {
+            @extend %widget;
+            background-color: rgb(172, 187, 44);
+        }
+    }
+
+    &__widget {
+        background-color: rgb(69, 119, 42);
+        padding: u.rem(16);
+
+        &--green {
+            @extend .grid__widget;
+            background-color: rgb(172, 187, 44);
+        }
+    }
+
+    &__widget {
+        $widget: &;
+        background-color: rgb(69, 119, 42);
+        padding: u.rem(16);
+
+        &--green {
+            @extend #{$widget};
+            background-color: rgb(187, 44, 68);
+        }
+    }
+}
