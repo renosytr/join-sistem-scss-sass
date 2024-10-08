@@ -1,4 +1,4 @@
-# Join Sistem X D3TI UNS
+# Join Sistem X D3TI UNS 2024
 
 Praktikum project Bootcamp FE Intermediate for Universitas Sebelas Maret (UNS). 
 
